@@ -1,0 +1,50 @@
+---
+- hosts: windows_hosts
+  gather_facts: false
+  tasks:
+    - name: Install IIS
+      win_feature:
+        name: "Web-Server"
+        state: present
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+
+    - name: delete default home page
+      win_file: path="C:\inetpub\wwwroot\iisstart.htm" state=absent
+
+    - name: Update home page
+      win_template: src="windows2012/templates/index.html.j2" dest="C:\inetpub\wwwroot\index.html"
+
+    - name: install Tomcat 8
+      win_chocolatey: name=tomcat
+
+    #- name: check tomcat is serving content on http://localhost:8000
+    #  wait_for: port="8000" delay=10
+    
+    - name: install LessMSI package
+      win_chocolatey: name=lessmsi
+
+    - name: install Web Platform Installer command-line
+      win_chocolatey: name=webpicmd
+
+    - name: Configure IIS to act as a reverse-proxy for Tomcat
+      win_webpicmd: name="{{ item }}"
+      with_items:
+         - URLRewrite2
+         - ARRv3_0
+
+    - name: Check if ARR proxy is enabled
+      raw: powershell.exe Write-Host (Get-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' -filter "system.webServer/proxy" -name "enabled").value 
+      register: arr_proxy_enabled
+
+    - name: debug
+      debug:
+         msg: "arr_proxy_enabled: {{ arr_proxy_enabled.stdout }}"
+
+    - name: Enable ARR proxy in IIS
+      script: "windows2012/files/enable_arr_proxy.ps1"
+      when: arr_proxy_enabled.stdout == "False\n"
+
+    - name: Update web.config with reverse-proxy rule
+      win_template: src="windows2012/templates/web.config.j2" dest="C:\inetpub\wwwroot\web.config"
