@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Deploy a Windows Server 2012 R2 VM in the location of your resource group",
+  "description": "This template allows you to deploy a Windows Server 2012 R2 VM, using the latest patched version. This will deploy in the location of the resource group you execute it and use a D1 VM Size.",
+  "summary": "This template takes a minimum amount of parameters and deploys a Windows VM, using the latest patched version.",
+  "githubUsername": "sebbrochet",
+  "dateUpdated": "2016-03-06"
+}
