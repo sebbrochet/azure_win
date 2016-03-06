@@ -1,7 +1,13 @@
 # Some testing with Ansible to configure a Windows Server 2012 R2 server hosted in Azure...
 
 ### VM creation on Azure
-* Browse to https://github.com/sebbrochet/azure_win/tree/master/vm_creation and click on the **Deploy to Azure** button
+* You can either
+  * Browse to https://github.com/sebbrochet/azure_win/tree/master/vm_creation and click on the **Deploy to Azure** button
+  * or use Azure cli
+    * `azure group create RESOURCE_GROUP_NAME LOCATION`
+    * ex: `azure group create winseb2012e westeurope`
+    * `azure group deployment create --template-uri https://raw.githubusercontent.com/sebbrochet/azure_win/master/vm_creation/azuredeploy.json RESOURCE_GROUP_NAME firstDeployment`
+    * ex: `azure group deployment create --template-uri https://raw.githubusercontent.com/sebbrochet/azure_win/master/vm_creation/azuredeploy.json winseb2012e firstDeployment`
 
 You'll need to provide username, password and DNS label for the VM.   
 
