@@ -36,8 +36,3 @@ The provided ansible playbook:
    
 To provision your windows server, go the provisioning directory and run:  
 `ansible-playbook -i azure_hosts windows2012.yml --ask-vault`
-
-### TODO
-* Contrary to a Windows Server 2012 R2 directly provisioned from the Market place with the portal, the template doesn't currently include a Network Security Group. As such, there is no sense to proxify Tomcat as it's directly accessible at http://your_public_ip:8080
-* (As it turns out, the local firewall doesn't seem to have opened 8080 so 8080 is currently closed. But it's nonetheless a good habit to put a Network Security Group in front of your VM :)
-  * => add a Network Security Group in the Azure template
