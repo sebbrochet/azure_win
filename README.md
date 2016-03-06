@@ -9,8 +9,9 @@ You'll need to provide username, password and DNS label for the VM.
 * All is described in details here: http://docs.ansible.com/ansible/intro_windows.html#windows-system-prep 
 * On a Windows Server 2012 R2 VM, it means you only need to run this Powershell script https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
 * Connect to your Windows VM using the RDP link provided in the Azure portal (Connect)
-* Open Windows Powershell and type `notepad ConfigureRemotingForAnsible.ps1`
-* Launch Internet Exlporer and browse to the raw version of the Powershell script to run (https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)
+* Open Windows Powershell and type
+  * `notepad ConfigureRemotingForAnsible.ps1`
+* Launch Internet Explorer and browse to the raw version of the Powershell script to run (https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)
 * Select all source code and copy it (CTRL+A, CTRL+C)
 * Paste it into notepad, save file and exit
 * In the powershell windows, execute the script
@@ -19,13 +20,13 @@ You'll need to provide username, password and DNS label for the VM.
 
 ### Check Ansible - Windows VM connection
 * Replace the configuration file with the provided configuration file sample 
-  `cp provisioning/group_vars/windows_hosts.yml.sample provisioning/group_vars/windows_hosts.yml`
+  * `cp provisioning/group_vars/windows_hosts.yml.sample provisioning/group_vars/windows_hosts.yml`
 * Update it with the windows VM credentials
 * You should also update the inventory file (provisioning/azure_hosts) with the DNS of the windows server you want to configure.   
 * Run
-  `ansible all -i provisioning/azure_hosts -m setup`
+  * `ansible all -i provisioning/azure_hosts -m setup`
 * As this file contains your credentials, you should encrypt it wih ansible-vault
-  `ansible-vault encrypt provisioning/group_vars/windows_hosts.yml`
+  * `ansible-vault encrypt provisioning/group_vars/windows_hosts.yml`
 
 ### Provision the VM with Ansible
 The provided ansible playbook:   
@@ -38,4 +39,5 @@ To provision your windows server, go the provisioning directory and run:
 
 ### TODO
 * Contrary to a Windows Server 2012 R2 directly provisioned from the Market place with the portal, the template doesn't currently include a Network Security Group. As such, there is no sense to proxify Tomcat as it's directly accessible at http://your_public_ip:8080
+* (in fact, the local firewall doesn't seem to have 8080 opened so 8080 is currently closed. But it's nonetheless a good habit to put a Network Security Group in front of your VM :)
   * => add a Network Secuiry Group in the Azure template
