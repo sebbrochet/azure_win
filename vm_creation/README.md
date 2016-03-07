@@ -1,7 +1,7 @@
 # Very simple deployment of an Windows VM
 
 Based on the template done by coreysa (https://github.com/coreysa).   
-(It's mostly a stripped-down version of the original with an additional Network Security group)  
+(It's mostly a stripped-down version of the original with an additional Network Security group and winRM SSL activation)  
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsebbrochet%2Fazure_win%2Fmaster%2Fvm_creation%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>

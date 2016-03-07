@@ -235,7 +235,29 @@
             "storageUri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net')]"
           }
         }
-      }
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Compute/virtualMachines/extensions",
+          "name": "[concat(variables('vmName'), '/ConfigureRemotingForAnsible')]",
+          "apiVersion": "[variables('apiVersion')]",
+          "location": "[resourceGroup().location]",
+          "dependsOn": [
+             "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+           ],
+           "properties": {
+       	     "publisher": "Microsoft.Compute",
+       	     "type": "CustomScriptExtension",
+             "typeHandlerVersion": "1.4",
+             "settings": {
+               "fileUris": [ 
+                 "https://raw.githubusercontent.com/sebbrochet/azure_win/master/vm_creation/ConfigureRemotingForAnsible.ps1"
+               ],
+               "commandToExecute": "powershell -ExecutionPolicy Unrestricted -file ConfigureRemotingForAnsible.ps1"
+             }
+           }
+        }
+      ]
     }
   ]
 }

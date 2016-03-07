@@ -11,19 +11,6 @@
 
 You'll need to provide username, password and DNS label for the VM.   
 
-### VM preparation for Ansible configuration
-* All is described in details here: http://docs.ansible.com/ansible/intro_windows.html#windows-system-prep 
-* On a Windows Server 2012 R2 VM, it means you only need to run this Powershell script https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
-* Connect to your Windows VM using the RDP link provided in the Azure portal (Connect)
-* Open Windows Powershell and type
-  * `notepad ConfigureRemotingForAnsible.ps1`
-* Launch Internet Explorer and browse to the raw version of the Powershell script to run (https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)
-* Select all source code and copy it (CTRL+A, CTRL+C)
-* Paste it into notepad, save file and exit
-* In the powershell windows, execute the script
-  * `.\ConfigureRemotingForAnsible.ps1`
-* You VM is now ready to be Ansible controlled ;)
-
 ### Check Ansible - Windows VM connection
 * Replace the configuration file with the provided configuration file sample 
   * `cp provisioning/group_vars/windows_hosts.yml.sample provisioning/group_vars/windows_hosts.yml`
