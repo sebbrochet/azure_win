@@ -15,7 +15,7 @@ You'll need to provide username, password and DNS label for the VM.
 * Replace the configuration file with the provided configuration file sample 
   * `cp provisioning/group_vars/windows_hosts.yml.sample provisioning/group_vars/windows_hosts.yml`
 * Update it with the windows VM credentials
-* You should also update the inventory file (provisioning/azure_hosts) with the DNS of the windows server you want to configure.   
+* You should also update the inventory file (`provisioning/azure_hosts`) with the DNS of the windows server you want to configure.   
 * Run
   * `ansible all -i provisioning/azure_hosts -m setup`
 * As this file contains your credentials, you should encrypt it wih ansible-vault
@@ -27,12 +27,12 @@ The provided ansible playbook:
 * Install Tomcat 8
 * Configure IIS to act as a reverse-proxy for Tomcat (http://localhost:8000)
    
-To provision your windows server, go the provisioning directory and run:  
+To provision your windows server, go the `provisioning` directory and run:  
 `ansible-playbook -i azure_hosts windows2012.yml --ask-vault`
 
 ### Check the result
 Browse `http://<your DNS label>.<your location>.cloudapp.azure.com`   
-Ex: `http://winseb2012g.westeurope.cloudapp.azure.com`   
+Ex: http://winseb2012g.westeurope.cloudapp.azure.com   
 
 You should get Tomcat 8 default home page!   
 
