@@ -1,1 +1,8 @@
 *.retry
+*.pem
+*.gz
+syntaxcache
+provisioning/chef/cookbooks/windows
+provisioning/chef/cookbooks/webpi
+provisioning/chef/cookbooks/chocolatey
+provisioning/chef/cookbooks/chef_handler
