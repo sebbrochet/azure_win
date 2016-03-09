@@ -13,8 +13,8 @@ You'll need to provide username, password and DNS label for the VM.
 
 ### Provisiong step
 * You can either provision your node with Ansible or Chef
-  * For Ansible, please have a look at [provisioning/ansible](tree/master/provisioning/ansible)
-  * For Chef, please have a look at [provisioning/chef](tree/master/provisioning/chef)
+  * For Ansible, please have a look at [provisioning/ansible](provisioning/ansible)
+  * For Chef, please have a look at [provisioning/chef](provisioning/chef)
 * In each case the playbook/cookbook will
   * Install IIS feature
   * Install Tomcat 8
