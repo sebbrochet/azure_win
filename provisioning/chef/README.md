@@ -19,7 +19,7 @@ Connected successfully to winseb2012h.westeurope.cloudapp.azure.com at https://w
 ```
 
 ### Check winRM authentication
-`knife winrm -m winseb2012h.westeurope.cloudapp.azure.com ipconfig -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none`
+`knife winrm -m <DNS label>.<location>.cloudapp.azure.com ipconfig -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none`
 
 ### Configure your Chef Server
 You need to either create a Chef server or register an account at hosted chef (https://manage.chef.io).     
@@ -30,7 +30,7 @@ You can follow instructions here: https://learn.chef.io/manage-a-node/windows/se
 
 ### Bootstrap node
 Asuming you call your node `win_web`, you can now bootstrap it with this command:    
-`knife bootstrap windows winrm winseb2012h.westeurope.cloudapp.azure.com -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none -N win_web`
+`knife bootstrap windows winrm <DNS label>.<location>.cloudapp.azure.com -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none -N win_web`
 
 ### Get the community cookbooks our cookbook depends on
 ```
@@ -45,5 +45,5 @@ Asuming you call your node `win_web`, you can now bootstrap it with this command
 ```
 
 ### Run the cookbook on your node
-`knife winrm -m winseb2012h.westeurope.cloudapp.azure.com chef-client --manual-list -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none`
+`knife winrm -m <DNS label>.<location>.cloudapp.azure.com chef-client --manual-list -x USER -P PASSWORD -t ssl --winrm-ssl-verify-mode verify_none`
 
